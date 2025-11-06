@@ -1,24 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
+import Info from "./pages/Info";
+import { useTheme } from "./context/ThemeContext";
+import QuizBasic from "./pages/QuizBasic";
 
 function App() {
+  const { darkMode } = useTheme();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Navbar />
+
+      <main className={darkMode ? "bg-gray-900 pt-20 min-h-screen" : "bg-orange-200 pt-20 min-h-screen"}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/info" element={<Info />} />
+          <Route path="/quizBasic" element={<QuizBasic />}/>
+        </Routes>
+      </main>
+    </BrowserRouter>
   );
 }
 
