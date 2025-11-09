@@ -2,7 +2,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
 import { ChevronUp } from "lucide-react";
 
-export default function Info_5_1() {
+export default function Info51() {
   const posiciones = [
     { id: "Rotacion1", nombre: "Rotación 1", gif: "/images/gifs/5-1/Rotacion-1.gif", inicio: "/images/screenshots/5-1/estatico/Rotacion-1.jpg", fin: "/images/screenshots/5-1/movidos/Rotacion-1.jpg", statica: "/images/screenshots/5-1/movidos/Rotacion-1.jpg" },
     { id: "Rotacion2", nombre: "Rotación 2", gif: "/images/gifs/5-1/Rotacion-2.gif", inicio: "/images/screenshots/5-1/estatico/Rotacion-2.jpg", fin: "/images/screenshots/5-1/movidos/Rotacion-2.jpg", statica: "/images/screenshots/5-1/movidos/Rotacion-2.jpg" },
