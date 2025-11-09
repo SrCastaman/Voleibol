@@ -2,17 +2,14 @@ import { AnimatePresence, motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
 import { ChevronUp } from "lucide-react";
 
-export default function Info() {
+export default function Info_5_1() {
   const posiciones = [
-    { id: "basev", nombre: "BASE/V", gif: "/images/gifs/Posicion-V.gif", inicio: "/images/screenshots/Posicion-linea.jpg", fin: "/images/screenshots/Posicion-Base.jpg", statica: "/images/screenshots/Posicion-Base.jpg" },
-    { id: "k1", nombre: "RECEPCIÓN K1", gif: "/images/gifs/Posicion-Recibir.gif", inicio: "/images/screenshots/Posicion-linea.jpg", fin: "/images/screenshots/Posicion-recepcion-k1.jpg", statica: "/images/screenshots/Posicion-recepcion-k1.jpg" },
-    { id: "k2.2", nombre: "DEFENSA K2 (2)", gif: "/images/gifs/Posicion-bloqueo-k2-en-2.gif", inicio: "/images/screenshots/Posicion-linea.jpg", fin: "/images/screenshots/Posicion-Defensa-k2-en-2.jpg", statica: "/images/screenshots/Posicion-Defensa-k2-en-2.jpg" },
-    { id: "k2.3", nombre: "DEFENSA K2 (3)", gif: "/images/gifs/Posicion-bloqueo-k2-en-3.gif", inicio: "/images/screenshots/Posicion-linea.jpg", fin: "/images/screenshots/Posicion-Defensa-k2-en-3.jpg", statica: "/images/screenshots/Posicion-Defensa-k2-en-3.jpg" },
-    { id: "k2.4", nombre: "DEFENSA K2 (4)", gif: "/images/gifs/Posicion-bloqueo-k2-en-4.gif", inicio: "/images/screenshots/Posicion-linea.jpg", fin: "/images/screenshots/Posicion-Defensa-k2-en-4.jpg", statica: "/images/screenshots/Posicion-Defensa-k2-en-4.jpg" },
-    { id: "k2.ZAG", nombre: "DEFENSA K2 (ZAG)", gif: "/images/gifs/Posicion-defensa-k2-zaguero.gif", inicio:"/images/screenshots/Posicion-linea.jpg", fin: "/images/screenshots/Posicion-Defensa-k2-en-zag.jpg", statica: "/images/screenshots/Posicion-Defensa-k2-en-zag.jpg" },
-    { id: "k3.2", nombre: "APOYO K3 (2)", gif: "/images/gifs/Posicion-apoyo-k3-en-2.gif", inicio: "/images/screenshots/Posicion-linea.jpg", fin: "/images/screenshots/Posicion-Apoyo-k3-en-2.jpg", statica: "/images/screenshots/Posicion-Apoyo-k3-en-2.jpg" },
-    { id: "k3.4", nombre: "APOYO K3 (4)", gif: "/images/gifs/Posicion-apoyo-k3-en-4.gif", inicio: "/images/screenshots/Posicion-linea.jpg", fin: "/images/screenshots/Posicion-Apoyo-k3-en-4.jpg", statica: "/images/screenshots/Posicion-Apoyo-k3-en-4.jpg" },
-    { id: "k4", nombre: "FREEBALL K4", gif: "/images/gifs/Posicion-freeball-k4.gif", inicio: "/images/screenshots/Posicion-linea.jpg", fin: "/images/screenshots/Posicion-Freeball-k4.jpg", statica: "/images/screenshots/Posicion-Freeball-k4.jpg" },
+    { id: "Rotacion1", nombre: "Rotación 1", gif: "/images/gifs/5-1/Rotacion-1.gif", inicio: "/images/screenshots/5-1/estatico/Rotacion-1.jpg", fin: "/images/screenshots/5-1/movidos/Rotacion-1.jpg", statica: "/images/screenshots/5-1/movidos/Rotacion-1.jpg" },
+    { id: "Rotacion2", nombre: "Rotación 2", gif: "/images/gifs/5-1/Rotacion-2.gif", inicio: "/images/screenshots/5-1/estatico/Rotacion-2.jpg", fin: "/images/screenshots/5-1/movidos/Rotacion-2.jpg", statica: "/images/screenshots/5-1/movidos/Rotacion-2.jpg" },
+    { id: "Rotacion3", nombre: "Rotación 3", gif: "/images/gifs/5-1/Rotacion-3.gif", inicio: "/images/screenshots/5-1/estatico/Rotacion-3.jpg", fin: "/images/screenshots/5-1/movidos/Rotacion-3.jpg", statica: "/images/screenshots/5-1/movidos/Rotacion-3.jpg" },
+    { id: "Rotacion4", nombre: "Rotación 4", gif: "/images/gifs/5-1/Rotacion-4.gif", inicio: "/images/screenshots/5-1/estatico/Rotacion-4.jpg", fin: "/images/screenshots/5-1/movidos/Rotacion-4.jpg", statica: "/images/screenshots/5-1/movidos/Rotacion-4.jpg" },  
+    { id: "Rotacion5", nombre: "Rotación 5", gif: "/images/gifs/5-1/Rotacion-5.gif", inicio: "/images/screenshots/5-1/estatico/Rotacion-5.jpg", fin: "/images/screenshots/5-1/movidos/Rotacion-5.jpg", statica: "/images/screenshots/5-1/movidos/Rotacion-5.jpg" },
+    { id: "Rotacion6", nombre: "Rotación 6", gif: "/images/gifs/5-1/Rotacion-6.gif", inicio: "/images/screenshots/5-1/estatico/Rotacion-6.jpg", fin: "/images/screenshots/5-1/movidos/Rotacion-6.jpg", statica: "/images/screenshots/5-1/movidos/Rotacion-6.jpg" }    
   ];
 
   const [playing, setPlaying] = React.useState({});
@@ -34,14 +31,15 @@ export default function Info() {
 
   return (
     <AnimatePresence mode="wait">
-      <motion.div
+      <motion.div 
         key={window.location.pathname} 
         initial={{ opacity: 0}}
         animate={{ opacity: 1}}
         exit={{ opacity: 0}}
         transition={{ duration: 0.3 }}
         className="p-6 min-h-screen scroll-smooth transition-colors duration-500 bg-orange-200 text-gray-800 relative"
-      >
+        >
+
         <h2 className="text-4xl font-extrabold text-gray-800 mb-6 text-center tracking-tight">
           POSICIONES DEL VOLEIBOL
         </h2>
@@ -91,7 +89,7 @@ export default function Info() {
                 <div className="flex flex-col items-center">
                   <div className="relative">
                     <img
-                      src={`${pos.inicio}?v=${i}`}
+                      src={pos.inicio}
                       alt={`Inicio ${pos.nombre}`}
                       className="rounded-xl shadow-md w-[400px] h-auto object-contain"
                     />
@@ -120,7 +118,7 @@ export default function Info() {
                 <div className="flex flex-col items-center">
                   <div className="relative">
                     <img
-                      src={pos.fin}
+                      src={`${pos.inicio}?v=${i}`}
                       alt={`Final ${pos.nombre}`}
                       className="rounded-xl shadow-md w-[400px] h-auto object-contain"
                     />
@@ -153,7 +151,6 @@ export default function Info() {
           </button>
         )}
       </motion.div>
-
     </AnimatePresence>
   );
 }

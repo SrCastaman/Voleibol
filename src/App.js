@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import Info from "./pages/Info";
 import { useTheme } from "./context/ThemeContext";
 import QuizBasic from "./pages/QuizBasic";
+import Info_5_1 from "./pages/Info_5_1";
 
 function App() {
   const { darkMode } = useTheme();
@@ -16,6 +17,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/info" element={<Info />} />
           <Route path="/quizBasic" element={<QuizBasic />}/>
+          <Route path="/info5_1" element={<Info_5_1/>}></Route>
         </Routes>
       </main>
     </BrowserRouter>

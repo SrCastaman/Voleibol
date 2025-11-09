@@ -3,16 +3,20 @@ import { useNavigate } from "react-router-dom";
 export default function Home() {
   const navigate = useNavigate();
 
-  const handleClick = () => {
+  const goToInfo = () => {
     navigate("/info");
   };
+
+  const goToInfo5_1 = () => {
+    navigate("/info5_1")
+  }
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-orange-200 text-gray-800 p-8">
 
       {/* Título principal */}
       <h1 className="text-5xl font-extrabold text-orange-600 mb-4 text-center">
-        🏐 Entrena Voleibol
+        Entrena Voleibol
       </h1>
 
       {/* Subtítulo */}
@@ -22,24 +26,47 @@ export default function Home() {
       </p>
 
       {/* Imagen clickeable con aviso */}
-      <div
-        onClick={handleClick}
-        className="relative w-full max-w-3xl h-64 md:h-80 rounded-2xl overflow-hidden shadow-lg cursor-pointer group transition-all"
-      >
-        <img
-          src="/images/screenshots/Posicion-linea.jpg"
-          alt="Posiciones en línea"
-          className="w-full h-full object-cover filter blur-sm brightness-75 group-hover:blur-none transition-all duration-500"
-        />
+      <div className="flex">
+        <div
+          onClick={goToInfo}
+          className="mr-2 relative w-full max-w-3xl h-64 md:h-80 rounded-2xl overflow-hidden shadow-lg cursor-pointer group transition-all"
+        >
+          <img
+            src="/images/screenshots/Posicion-linea.jpg"
+            alt="Posiciones en línea"
+            className="w-full h-full object-cover filter blur-sm brightness-75 group-hover:blur-none transition-all duration-500"
+          />
 
-        {/* Overlay con texto */}
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white bg-black/30 group-hover:bg-black/10 transition-colors duration-500">
-          <h2 className="text-2xl md:text-3xl font-semibold mb-2 drop-shadow-lg">
-            Haz clic para aprender las posiciones
-          </h2>
-          <p className="text-sm md:text-base italic text-gray-200">
-            Te llevará a la sección de información
-          </p>
+          {/* Overlay con texto */}
+          <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white bg-black/30 group-hover:bg-black/10 transition-colors duration-500">
+            <h2 className="text-2xl md:text-3xl font-semibold mb-2 drop-shadow-lg">
+              Haz clic para aprender las posiciones básicas
+            </h2>
+            <p className="text-sm md:text-base italic text-gray-200">
+              Te llevará a la sección de información
+            </p>
+          </div>
+        </div>
+
+        <div
+          onClick={goToInfo5_1}
+          className="ml-2 relative w-full max-w-3xl h-64 md:h-80 rounded-2xl overflow-hidden shadow-lg cursor-pointer group transition-all"
+        >
+          <img
+            src="/images/screenshots/5-1/estatico/Rotacion-1.jpg"
+            alt="Posiciones en línea"
+            className="w-full h-full object-cover filter blur-sm brightness-75 group-hover:blur-none transition-all duration-500"
+          />
+
+          {/* Overlay con texto */}
+          <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white bg-black/30 group-hover:bg-black/10 transition-colors duration-500">
+            <h2 className="text-2xl md:text-3xl font-semibold mb-2 drop-shadow-lg">
+              Haz clic para aprender las posiciones del 5-1
+            </h2>
+            <p className="text-sm md:text-base italic text-gray-200">
+              Te llevará a la sección de información
+            </p>
+          </div>
         </div>
       </div>
 
