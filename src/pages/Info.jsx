@@ -55,7 +55,7 @@ export default function Info() {
         {/* Índice */}
         <div className="rounded-xl shadow-md p-4 mb-10 border transition-colors duration-300 bg-gray-200 border-gray-200">
           <h3 className="text-xl font-semibold text-gray-800 mb-3 text-center">
-            📘 Índice de Posiciones
+            📘 Índice
           </h3>
           <div className="flex flex-wrap justify-center gap-3">
             {posiciones.map((pos) => (
@@ -80,7 +80,7 @@ export default function Info() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: i * 0.05 }}
               viewport={{ once: true }}
-              className="rounded-2xl shadow-lg p-6 border transition-all duration-500 bg-gray-200 border-gray-200 hover:shadow-blue-100"
+              className="rounded-2xl shadow-lg p-6 border transition-all duration-500 bg-gray-100 border-gray-200 hover:shadow-blue-100"
             >
               <h3 className="text-2xl underline font-bold text-gray-700 mb-6 text-center">
                 {pos.nombre}

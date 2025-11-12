@@ -1,8 +1,13 @@
 import { AnimatePresence, motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
 import { ChevronUp } from "lucide-react";
+import JugadorModal from "../components/JugadorModal";
 
 export default function Info51() {
+
+  const [modalJugador, setModalJugador] = useState(null);
+
+
   const posiciones = [
     { id: "Rotacion1", nombre: "Rotación 1", gif: "/images/gifs/5-1/Rotacion-1.gif", inicio: "/images/screenshots/5-1/estatico/Rotacion-1.jpg", fin: "/images/screenshots/5-1/movidos/Rotacion-1.jpg", statica: "/images/screenshots/5-1/movidos/Rotacion-1.jpg" },
     { id: "Rotacion2", nombre: "Rotación 2", gif: "/images/gifs/5-1/Rotacion-2.gif", inicio: "/images/screenshots/5-1/estatico/Rotacion-2.jpg", fin: "/images/screenshots/5-1/movidos/Rotacion-2.jpg", statica: "/images/screenshots/5-1/movidos/Rotacion-2.jpg" },
@@ -56,13 +61,13 @@ export default function Info51() {
         </p>
 
         {/* === ÍNDICE === */}
-        <div className="rounded-xl shadow-md p-4 mb-10 border bg-gray-200 border-gray-200">
+        <div className="rounded-xl shadow-md p-4 mb-10 border bg-gray-200 border-gray-100">
           <h3 className="text-xl font-semibold text-gray-800 mb-3 text-center">📘 Índice</h3>
           <div className="flex flex-wrap justify-center gap-3">
-            <a href="#jugadores" className="px-4 py-2 rounded-full bg-gray-100 hover:bg-gray-300">Roles</a>
-            <a href="#posiciones-base" className="px-4 py-2 rounded-full bg-gray-100 hover:bg-gray-300">Posiciones base</a>
+            <a href="#jugadores" className="px-4 py-2 rounded-full bg-gray-50 hover:bg-gray-300 font-semibold">Roles</a>
+            <a href="#posiciones-base" className="px-4 py-2 rounded-full bg-gray-50 hover:bg-gray-300 font-semibold">Posiciones base</a>
             {posiciones.map((pos) => (
-              <a key={pos.id} href={`#${pos.id}`} className="px-4 py-2 rounded-full bg-gray-100 hover:bg-gray-300">
+              <a key={pos.id} href={`#${pos.id}`} className="px-4 py-2 rounded-full bg-gray-50 hover:bg-gray-300 font-semibold">
                 {pos.nombre}
               </a>
             ))}
@@ -70,50 +75,98 @@ export default function Info51() {
         </div>
 
         {/* === NUEVO BLOQUE: JUGADORES CON CARDS === */}
-        <section id="jugadores" className="rounded-2xl shadow-lg p-10 border bg-gray-200 mb-16">
+        <section id="jugadores" className="rounded-2xl shadow-lg p-10 border bg-gray-100 mb-16">
           <h3 className="text-3xl font-bold text-center mb-12 underline">Roles</h3>
 
           {/* Primera fila: 4 jugadores */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 justify-items-center gap-6">
+          <div className="flex flex-wrap justify-center">
             {jugadores.slice(0, 4).map((jug) => (
-              <div className="w-[240px] h-[240px] relative bg-white rounded-2xl shadow-lg overflow-hidden hover:scale-105 transition-transform duration-300">
+              <motion.div
+                key={jug.nombre}
+                className="group w-[180px] h-[180px] relative bg-white rounded-2xl shadow-lg overflow-hidden transition-transform duration-300 cursor-pointer"
+                style={{ margin: "8px" }}
+                whileHover={{
+                  scale: 1.08,
+                }}
+                onClick={() => setModalJugador(jug)}
+              >
                 <img
                   src={jug.imagen}
                   alt={jug.nombre}
-                  className="ml-4 w-[210px] h-[210px] object-cover"
+                  className="w-[150px] h-[150px] object-cover mx-auto mt-2"
                 />
+
+                {/* Overlay inferior con nombre */}
                 <div className="absolute bottom-0 left-0 w-full bg-black/50 text-white p-2 text-center">
                   <h4 className="text-md font-semibold truncate">{jug.nombre}</h4>
-                  <p className="text-sm italic truncate">{jug.rol}</p>
                 </div>
-              </div>
+
+                {/* Overlay con tooltip visible en cualquier parte del card */}
+                <div className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <motion.p
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="text-white text-sm font-medium bg-black/60 px-3 py-1 rounded-full shadow-md"
+                  >
+                    🔍 Haz clic para info
+                  </motion.p>
+                </div>
+              </motion.div>
             ))}
           </div>
 
-          {/* Segunda fila: 3 jugadores centrados */}
-          <div className="grid grid-cols-3 justify-items-center gap-6 mt-10 lg:mx-auto lg:w-[75%]">
+          {/* Segunda fila: 3 jugadores */}
+          <div className="flex justify-center flex-wrap mt-6">
             {jugadores.slice(4).map((jug) => (
-              <div className="w-[240px] h-[240px] relative bg-white rounded-2xl shadow-lg overflow-hidden hover:scale-105 transition-transform duration-300">
+              <motion.div
+                key={jug.nombre}
+                className="group w-[180px] h-[180px] relative bg-white rounded-2xl shadow-lg overflow-hidden transition-transform duration-300 cursor-pointer"
+                style={{ margin: "8px" }}
+                whileHover={{
+                  scale: 1.08,
+                }}
+                onClick={() => setModalJugador(jug)}
+              >
                 <img
                   src={jug.imagen}
                   alt={jug.nombre}
-                  className="ml-4 w-[210px] h-[210px] object-cover"
+                  className="w-[150px] h-[150px] object-cover mx-auto mt-2"
                 />
+
+                {/* Overlay inferior con nombre */}
                 <div className="absolute bottom-0 left-0 w-full bg-black/50 text-white p-2 text-center">
                   <h4 className="text-md font-semibold truncate">{jug.nombre}</h4>
-                  <p className="text-sm italic truncate">{jug.rol}</p>
                 </div>
-              </div>
+
+                {/* Overlay con tooltip visible en cualquier parte del card */}
+                <div className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <motion.p
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="text-white text-sm font-medium bg-black/60 px-3 py-1 rounded-full shadow-md"
+                  >
+                    🔍 Haz clic para info
+                  </motion.p>
+                </div>
+              </motion.div>
             ))}
           </div>
         </section>
 
 
+        <JugadorModal
+          jugador={modalJugador}
+          isOpen={!!modalJugador}
+          onClose={() => setModalJugador(null)}
+        />
+
 
 
 
         {/* === NUEVO BLOQUE: POSICIONES BASE === */}
-        <section id="posiciones-base" className="rounded-2xl shadow-lg p-6 border bg-gray-200 mb-16">
+        <section id="posiciones-base" className="rounded-2xl shadow-lg p-6 border bg-gray-100 mb-16">
           <h3 className="text-3xl font-bold text-center mb-8 underline">Posiciones Base según el Colocador</h3>
           <div className="flex flex-col md:flex-row justify-center items-center gap-8">
             <div className="text-center">
@@ -127,7 +180,7 @@ export default function Info51() {
           </div>
         </section>
 
-        {/* === ROTACIONES === */}
+       {/* === ROTACIONES === */}
         <div className="space-y-16">
           {posiciones.map((pos, i) => (
             <motion.div
@@ -137,25 +190,65 @@ export default function Info51() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: i * 0.05 }}
               viewport={{ once: true }}
-              className="rounded-2xl shadow-lg p-6 border bg-gray-200 hover:shadow-blue-100"
+              className="rounded-2xl shadow-lg p-6 border bg-gray-100"
             >
               <h3 className="text-2xl underline font-bold text-gray-700 mb-6 text-center">{pos.nombre}</h3>
+
               <div className="flex flex-col md:flex-row items-center justify-center gap-8">
-                <img src={pos.inicio} alt={`Inicio ${pos.nombre}`} className="rounded-xl shadow-md w-[400px]" />
+                {/* Imagen de inicio con etiqueta azul */}
+                <div className="flex flex-col items-center">
+                  <div className="relative">
+                    <img
+                      src={pos.inicio}
+                      alt={`Inicio ${pos.nombre}`}
+                      className="rounded-xl shadow-md w-[400px]"
+                    />
+                    <span className="absolute bottom-2 right-2 bg-blue-500 text-white text-xs px-2 py-1 rounded-full shadow-md">
+                      Inicio
+                    </span>
+                  </div>
+                </div>
+
+                {/* GIF clicable con texto inferior */}
                 <div
                   onClick={() => togglePlay(pos.id)}
                   className="relative rounded-xl p-3 cursor-pointer transform hover:scale-105 transition-transform duration-300 flex justify-center items-center bg-gray-900"
                 >
-                  <img src={playing[pos.id] ? pos.gif : pos.statica} alt={`Transición ${pos.nombre}`} className="w-[400px] rounded-lg object-contain" />
+                  <img
+                    src={playing[pos.id] ? pos.gif : pos.statica}
+                    alt={`Transición ${pos.nombre}`}
+                    className="w-[400px] rounded-lg object-contain"
+                  />
                   <div className="absolute bottom-3 right-3 bg-black/60 text-white text-xs px-3 py-1 rounded-full">
                     {playing[pos.id] ? "Pausar" : "Reproducir"}
                   </div>
                 </div>
-                <img src={pos.fin} alt={`Final ${pos.nombre}`} className="rounded-xl shadow-md w-[400px]" />
+
+                {/* Imagen final con etiqueta verde */}
+                <div className="flex flex-col items-center">
+                  <div className="relative">
+                    <img
+                      src={pos.fin}
+                      alt={`Final ${pos.nombre}`}
+                      className="rounded-xl shadow-md w-[400px]"
+                    />
+                    <span className="absolute bottom-2 right-2 bg-green-500 text-white text-xs px-2 py-1 rounded-full shadow-md">
+                      Final
+                    </span>
+                  </div>
+                </div>
               </div>
+
+              {/* Texto explicativo debajo del GIF */}
+              <p className="text-center mt-4 text-gray-500 text-lg italic">
+                {playing[pos.id]
+                  ? "Haz clic en el GIF para pausar la animación."
+                  : "Haz clic en el GIF para ver la transición."}
+              </p>
             </motion.div>
           ))}
         </div>
+
 
         {showButton && (
           <button
