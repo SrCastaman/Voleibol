@@ -25,7 +25,7 @@ function PlayerMarker({ player, handleDrop, reportSize }) {
         <img
           src={player.imagen}
           alt={`Jugador ${player.numero}`}
-          className={`w-[20px] h-[20px] md:w-[50px] md:h-[50px] cursor-grab rounded-full select-none border-4 transition-all duration-300
+          className={`w-[30px] h-[30px] sm:w-[40px] sm:h-[40px] md:w-[50px] md:h-[50px] cursor-grab rounded-full select-none border-4 transition-all duration-300
             ${player.correct === true ? "border-green-500" :
               player.correct === false ? "border-red-500" : "border-none"}`}
           onMouseDown={(e) => e.preventDefault()}

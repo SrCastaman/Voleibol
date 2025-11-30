@@ -158,8 +158,8 @@ export default function Court({ areasCorrectas, jugadoresIniciales, imagenesCamp
         ))}
       </div>
 
-      <div className="flex justify-between items-center mt-5">
-        <div className="flex gap-3">
+      <div className="flex flex-col md:flex-row justify-between items-center mt-5 gap-3">
+        <div className="flex gap-3 flex-wrap">
           <button
             onClick={corregir}
             className="px-4 py-2 bg-green-600 text-white rounded-md shadow hover:bg-green-500"
@@ -182,7 +182,7 @@ export default function Court({ areasCorrectas, jugadoresIniciales, imagenesCamp
           </button>
         </div>
 
-        <div className="text-lg md:text-xl font-bold text-blue-600">
+        <div className="text-lg md:text-xl font-bold text-blue-600 mt-2 md:mt-0">
           <span className="mr-2 text-gray-800">Posición: </span>
           <span className="text-orange-700">{preguntaActual}</span>
         </div>
