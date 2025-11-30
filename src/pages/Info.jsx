@@ -52,6 +52,17 @@ export default function Info() {
           Usa el índice para ir directamente a cada posición. 
         </p>
 
+        {/* ⚠️ Advertencia importante */}
+        <div className="bg-orange-400 text-red-900 border border-red-400 rounded-xl p-4 mb-10 max-w-3xl mx-auto text-center shadow-md">
+          <strong className="font-bold text-lg">⚠️ IMPORTANTE:</strong>
+          <p className="mt-1">
+            Las posiciones mostradas son una <strong>guía general</strong>.  
+            En un partido real, cada jugada puede requerir <strong>adaptarse </strong>  
+            según la estrategia, el entrenador y la situación del juego.
+          </p>
+        </div>
+
+
         {/* Índice */}
         <div className="rounded-xl shadow-md p-4 mb-10 border transition-colors duration-300 bg-gray-200 border-gray-200">
           <h3 className="text-xl font-semibold text-gray-800 mb-3 text-center">

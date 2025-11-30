@@ -153,6 +153,7 @@ export default function Info51() {
               </motion.div>
             ))}
           </div>
+          <p className="text-center mt-4 text-gray-500 dark:text-gray-400 text-xl italic">Pulsa para más información</p>
         </section>
 
 

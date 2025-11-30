@@ -1,85 +1,60 @@
 import { useNavigate } from "react-router-dom";
+import Carousel from "../components/CarouselSwiper";
 
 export default function Home() {
   const navigate = useNavigate();
 
-  const goToInfo = () => {
-    navigate("/info");
-  };
+  const infoSlides = [
+    {
+      image: "/images/screenshots/Posicion-linea.jpg",
+      title: "Aprender posiciones básicas",
+      subtitle: "Te llevará a la sección de información",
+      onClick: () => navigate("/info"),
+    },
+    {
+      image: "/images/screenshots/5-1/estatico/Rotacion-1.jpg",
+      title: "Aprender posiciones del 5-1",
+      subtitle: "Te llevará a la sección de información",
+      onClick: () => navigate("/info5_1"),
+    },
+  ];
 
-  const goToInfo5_1 = () => {
-    navigate("/info5_1")
-  }
+  const quizSlides = [
+    {
+      image: "/images/quizBasic.jpg",
+      title: "Quiz de posicionamiento básico",
+      subtitle: "Pon a prueba lo aprendido",
+      onClick: () => navigate("/quizBasic"),
+    },
+  ];
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-orange-200 text-gray-800 p-8">
-
-      {/* Título principal */}
+    <div className="flex flex-col items-center min-h-screen bg-orange-200 text-gray-800 p-8">
       <h1 className="text-5xl font-extrabold text-orange-600 mb-4 text-center">
         Entrena Voleibol
       </h1>
 
-      {/* Subtítulo */}
+      
+
       <p className="text-lg text-gray-700 mb-10 text-center max-w-2xl leading-relaxed">
         Plataforma educativa para comprender y practicar las{" "}
         <strong>posiciones y tácticas básicas</strong> del voleibol.
       </p>
 
-      {/* Imagen clickeable con aviso */}
-      <div className="flex">
-        <div
-          onClick={goToInfo}
-          className="mr-2 relative w-full max-w-3xl h-64 md:h-80 rounded-2xl overflow-hidden shadow-lg cursor-pointer group transition-all"
-        >
-          <img
-            src="/images/screenshots/Posicion-linea.jpg"
-            alt="Posiciones en línea"
-            className="w-full h-full object-cover filter blur-sm brightness-75 group-hover:blur-none transition-all duration-500"
-          />
-
-          {/* Overlay con texto */}
-          <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white bg-black/30 group-hover:bg-black/10 transition-colors duration-500">
-            <h2 className="text-2xl md:text-3xl font-semibold mb-2 drop-shadow-lg">
-              Haz clic para aprender las posiciones básicas
-            </h2>
-            <p className="text-sm md:text-base italic text-gray-200">
-              Te llevará a la sección de información
-            </p>
-          </div>
-        </div>
-
-        <div
-          onClick={goToInfo5_1}
-          className="ml-2 relative w-full max-w-3xl h-64 md:h-80 rounded-2xl overflow-hidden shadow-lg cursor-pointer group transition-all"
-        >
-          <img
-            src="/images/screenshots/5-1/estatico/Rotacion-1.jpg"
-            alt="Posiciones en línea"
-            className="w-full h-full object-cover filter blur-sm brightness-75 group-hover:blur-none transition-all duration-500"
-          />
-
-          {/* Overlay con texto */}
-          <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white bg-black/30 group-hover:bg-black/10 transition-colors duration-500">
-            <h2 className="text-2xl md:text-3xl font-semibold mb-2 drop-shadow-lg">
-              Haz clic para aprender las posiciones del 5-1
-            </h2>
-            <p className="text-sm md:text-base italic text-gray-200">
-              Te llevará a la sección de información
-            </p>
-          </div>
-        </div>
+      {/* Info Section */}
+      <h2 className="text-3xl font-semibold text-gray-800 mb-6 text-center">
+        Información
+      </h2>
+      <div className="w-full max-w-4xl mb-12">
+        <Carousel slides={infoSlides} />
       </div>
 
-      {/* Sección futura / aviso beta */}
-      <div className="bg-white/70 backdrop-blur-sm rounded-2xl shadow-md p-6 mt-10 max-w-xl text-center">
-        <h2 className="text-2xl font-semibold text-orange-700 mb-2">
-          Próximamente:
-        </h2>
-        <ul className="text-gray-700 space-y-2">
-          <li>• Prácticas interactivas de posicionamiento</li>
-          <li>• Rotaciones automáticas con feedback</li>
-          <li>• Modo de entrenamiento visual</li>
-        </ul>
+      {/* Quizzes Section */}
+      <h2 className="text-3xl font-semibold text-gray-800 mb-6 text-center mt-12">
+        Quizzes / Prácticas
+      </h2>
+      <div className="w-full max-w-4xl mb-12">
+        <Carousel slides={quizSlides} />
       </div>
 
       <footer className="mt-10 text-sm text-gray-500">

@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import PlayerMarker from "./PlayerMarker";
 
-export default function Court({ areasCorrectas, jugadoresIniciales }) {
+export default function Court({ areasCorrectas, jugadoresIniciales, imagenesCampos }) {
   const ORIGINAL_WIDTH = 486;
   const ORIGINAL_HEIGHT = 341;
 
@@ -15,10 +15,10 @@ export default function Court({ areasCorrectas, jugadoresIniciales }) {
   // Inicializar jugadores en 2x3 escalados al tamaño del court
   // -------------------------------
   const inicializarPosiciones = () => {
-  const bloqueWidth = 100;
-  const bloqueHeight = 150;
-  const cols = 2;
-  const rows = 3;
+    const bloqueWidth = 100;
+    const bloqueHeight = 150;
+    const cols = 2;
+    const rows = 3;
 
     return jugadoresIniciales.map((j, idx) => {
       const fila = Math.floor(idx / cols);
@@ -30,7 +30,6 @@ export default function Court({ areasCorrectas, jugadoresIniciales }) {
       return { ...j, x, y, correct: null };
     });
   };
-
 
   const [jugadores, setJugadores] = useState(() => inicializarPosiciones());
 
@@ -58,9 +57,6 @@ export default function Court({ areasCorrectas, jugadoresIniciales }) {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // -------------------------------
-  // Reescalar posiciones al tamaño del court
-  // -------------------------------
   useEffect(() => {
     if (!renderSize.w || !renderSize.h) return;
     setJugadores(inicializarPosiciones(renderSize.w, renderSize.h));
@@ -119,22 +115,24 @@ export default function Court({ areasCorrectas, jugadoresIniciales }) {
     setJugadores(inicializarPosiciones(renderSize.w, renderSize.h));
   };
 
+
   const siguientePregunta = () => {
     const restantes = preguntasRestantes.filter((p) => p !== preguntaActual);
 
+    let nuevaPregunta;
     if (restantes.length === 0) {
       alert("Has completado todas las posiciones. Se reinicia el quiz");
       setPreguntasRestantes([...preguntasBase]);
-      const nueva = preguntasBase[Math.floor(Math.random() * preguntasBase.length)];
-      setPreguntaActual(nueva);
+      nuevaPregunta = preguntasBase[Math.floor(Math.random() * preguntasBase.length)];
     } else {
-      const nueva = restantes[Math.floor(Math.random() * restantes.length)];
+      nuevaPregunta = restantes[Math.floor(Math.random() * restantes.length)];
       setPreguntasRestantes(restantes);
-      setPreguntaActual(nueva);
     }
 
-    setJugadores(inicializarPosiciones(renderSize.w, renderSize.h));
+    setPreguntaActual(nuevaPregunta);
+    setJugadores(inicializarPosiciones(renderSize.w, renderSize.h)); // <- reinicia posiciones
   };
+
 
   // -------------------------------
   // Render
@@ -144,11 +142,12 @@ export default function Court({ areasCorrectas, jugadoresIniciales }) {
       <div className="relative w-full max-w-4xl mx-auto aspect-[486/341] bg-gray-200 rounded-lg overflow-hidden">
         <img
           ref={courtRef}
-          src="/images/campo.png"
+          src={imagenesCampos[preguntaActual]}
           alt="Cancha"
           className="absolute inset-0 w-full h-full object-cover"
         />
 
+        {/* Jugadores */}
         {jugadores.map((j) => (
           <PlayerMarker
             key={j.id}

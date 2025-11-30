@@ -1,9 +1,9 @@
-import { useRef } from "react";
+import { useRef, useEffect, memo } from "react";
 import Draggable from "react-draggable";
-import { useEffect, memo } from "react";
 
 function PlayerMarker({ player, handleDrop, reportSize }) {
   const nodeRef = useRef(null);
+
   useEffect(() => {
     if (!nodeRef.current || !reportSize) return;
     const rect = nodeRef.current.getBoundingClientRect();
@@ -15,7 +15,7 @@ function PlayerMarker({ player, handleDrop, reportSize }) {
     <Draggable
       nodeRef={nodeRef}
       bounds="parent"
-      defaultPosition={{ x: player.x, y: player.y }}
+      position={{ x: player.x, y: player.y }} // <- controlado por estado
       onStop={(e, data) => handleDrop(player.id, data.x, data.y)}
     >
       <div
@@ -26,9 +26,9 @@ function PlayerMarker({ player, handleDrop, reportSize }) {
           src={player.imagen}
           alt={`Jugador ${player.numero}`}
           className={`w-[20px] h-[20px] md:w-[50px] md:h-[50px] cursor-grab rounded-full select-none border-4 transition-all duration-300
-            ${player.correct === true ? "border-4 border-green-500" :
-              player.correct === false ? "border-4 border-red-500" : "border-none"}`}
-          onMouseDown={(e) => e.preventDefault()} // evita conflicto con el navegador
+            ${player.correct === true ? "border-green-500" :
+              player.correct === false ? "border-red-500" : "border-none"}`}
+          onMouseDown={(e) => e.preventDefault()}
         />
       </div>
     </Draggable>
